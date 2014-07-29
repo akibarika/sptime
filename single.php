@@ -1,27 +1,43 @@
 <?php get_header(); ?>	
 	<section class="blog-wrap single">
 		<div class="nav">首页 > 日志 > <?php the_title(); ?></div>
-		<div class="main"><?php the_title(); ?></div>
-		<hr class="dot"></hr>
-		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<div class="detail-meta right">
-			<time><?php the_time('Y-m-d') ?></time> | 
-			written by <?php the_author_link(); ?> |
-			Posted in <?php the_category(' '); ?>|
-			<?php edit_post_link(); ?>
-		</div>
-		<div class="article">
-			<?php the_content(); ?>
-			<?php endwhile; ?>
-			<?php else : ?>
-			<div class="article">
-				<span>404 Not found</span>
+		<article>
+			<div class="main"><?php the_title(); ?></div>
+			<hr class="dot"></hr>
+			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+			<div class="detail-meta right">
+				<time><?php the_time('Y-m-d') ?></time> | 
+				written by <?php the_author_link(); ?> |
+				Posted in <?php the_category(' '); ?>
+				<?php edit_post_link(__('Edit This'),' |'); ?>
 			</div>
-			<?php endif; ?> 
-		</div>
+			<div class="article">
+				<?php the_content(); ?>
+				<?php endwhile; ?>
+				<?php else : ?>
+				<div class="article">
+					<span>404 Not found</span>
+				</div>
+				<?php endif; ?> 
+			</div>
+		</article>
 		<div class="share">
 			<span>分享</span> 
-
+			<!-- JiaThis Button BEGIN -->
+			<div class="jiathis_style">
+				<a class="jiathis_button_tsina"></a>
+				<a class="jiathis_button_tqq"></a>
+				<a class="jiathis_button_weixin"></a>
+				<a class="jiathis_button_renren"></a>
+				<a class="jiathis_button_baidu"></a>
+				<a class="jiathis_button_qzone"></a>
+				<a class="jiathis_button_googleplus"></a>
+				<a class="jiathis_button_twitter"></a>
+				<a class="jiathis_button_fb"></a>
+				<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+			</div>
+			<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1370069969982485" charset="utf-8"></script>
+			<!-- JiaThis Button END -->
 		</div>
 		
 		<div class="post-nav">
@@ -33,11 +49,11 @@
 			        }
 			        $categoryIDS = implode(",", $categoryIDS);
 			?>
-			<span class="previous"><?php if (get_previous_post($categoryIDS)) { previous_post_link('<i class="fa fa-arrow-circle-o-left"></i> 上一篇: %link','%title',true);} else { echo "已是最后文章";} ?></span>
-			<span class="next"><?php if (get_next_post($categoryIDS)) { next_post_link('<i class="fa fa-arrow-circle-o-right"></i> 下一篇: %link','%title',true);} else { echo "已是最新文章";} ?>	</span>	
+			<span class="previous"><?php if (get_previous_post($categoryIDS)) { previous_post_link('<div class="prevpost"> %link</div>','%title',true);} else { echo "已是最后文章";} ?></span>
+			<span class="next"><?php if (get_next_post($categoryIDS)) { next_post_link('<div class="nextpost"> %link</div>','%title',true);} else { echo "已是最新文章";} ?>	</span>	
 		</div>
 		<div class="clear"></div>
-		<script type='text/javascript' charset='utf-8' src='http://open.denglu.cc/connect/commentcode?appid=92281denu1nY36fiP65bPU9Oc5gap5&postid=<?php the_ID();?>&title=<?php the_title();?>'></script>
+		<?php comments_template( '', true ); ?>
 	</section>
 	
 <?php get_footer(); ?>

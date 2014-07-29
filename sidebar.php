@@ -9,8 +9,10 @@
 		return;
 	// If we get this far, we have widgets. Let do this.
 ?>
+<div class="right sidebars">
 <?php if ( is_active_sidebar( 'main-sidebar' ) ) : ?>
 
 	<?php dynamic_sidebar( 'main-sidebar' ); ?>
 
 <?php endif; ?>		
+</div>

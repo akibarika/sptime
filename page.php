@@ -7,7 +7,7 @@
 		<div class="detail-meta right">
 			<time><?php the_time('Y-m-d') ?></time> | 
 			written by <?php the_author_link(); ?> |
-			Posted in <?php the_category(' '); ?>|
+			Posted in <?php the_category(' '); ?> |
 			<?php edit_post_link(); ?>
 		</div>
 		<div class="article">

@@ -1,10 +1,10 @@
 <?php /* 
-	  	Template Name: Blog Index
+	  	Template Name: Blog Search Page
 	  */ ?>
 <?php get_header(); ?>	
-	<section class="blog-wrap" style="width:820px">
-		<div class="nav">首页 > <?php $cat=get_the_category();echo $cat[0]->cat_name; ?></div>
-		<div class="main"><?php echo $cat[0]->cat_name; ?></div>
+	<section class="blog-wrap">
+		<div class="nav">首页 > 搜索</div>
+		<div class="main"><?php printf( __( '“%s”的搜索结果', 'sptime' ), get_search_query() ); ?></div>
 		<hr class="dot"></hr>
 		<div class="blogs left">
 			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -15,8 +15,8 @@
 				<div class="mate">
 					<time><?php the_time('Y-m-d') ?></time> | 
 					written by <?php the_author_link(); ?> |
-					Posted in <?php the_category(' '); ?>
-					<?php edit_post_link(__('Edit This'),' |'); ?>
+					Posted in <?php the_category(' '); ?> |
+					<?php edit_post_link(); ?>
 				</div>
 				<div class="excerpt">
 					<?php if(has_excerpt()) : ?>
@@ -34,11 +34,10 @@
 			<?php endwhile; ?>
 			<?php else : ?>
 			<div class="blog">
-				<span>404 Not found</span>
+				<h3>没有搜索到相关内容</h3>
 			</div>
 			<?php endif; ?> 
 		</div>
-		<?php get_sidebar();?>
 		<div class="clear"></div>
 		<?php wpbeginner_numeric_posts_nav(); ?> 
 	</section>
